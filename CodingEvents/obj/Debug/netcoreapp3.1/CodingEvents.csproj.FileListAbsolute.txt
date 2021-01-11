@@ -37,4 +37,3 @@ C:\Users\hklov\Desktop\C#\CodingEvents\CodingEvents\obj\Debug\netcoreapp3.1\Codi
 C:\Users\hklov\Desktop\C#\CodingEvents\CodingEvents\obj\Debug\netcoreapp3.1\CodingEvents.genruntimeconfig.cache
 C:\Users\hklov\Desktop\C#\CodingEvents\CodingEvents\obj\Debug\netcoreapp3.1\CodingEvents.csproj.CopyComplete
 C:\Users\hklov\Desktop\C#\CodingEvents\CodingEvents\obj\Debug\netcoreapp3.1\Razor\Views\Events\Add.cshtml.g.cs
-C:\Users\hklov\Desktop\C#\CodingEvents\CodingEvents\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LinkListPartial.cshtml.g.cs
