@@ -3,33 +3,65 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodingEvents.Data;
+using CodingEvents.Models;
+using CodingEvents.ViewModels;
 
 namespace CodingEvents.Controllers
 {
     public class EventsController : Controller
     {
-        static private Dictionary<string, string> Events = new Dictionary<string, string>();
+        //static private Dictionary<string, string> Events = new Dictionary<string, string>();
 
         //GET: /<controller>/
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.events = Events;
+            List<Event> events = new List<Event>(EventData.GetAll());
 
-            return View();
+            return View(events);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
+            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            return View(addEventViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddEventViewModel addEventViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Event newEvent = new Event
+                {
+                    Name = addEventViewModel.Name,
+                    Description = addEventViewModel.Description,
+                    ContactEmail = addEventViewModel.ContactEmail
+                };
+                EventData.Add(newEvent);
+
+                return Redirect("/Events");
+            }
+
+            return View(addEventViewModel);
+        }
+
+        public IActionResult Delete()
+        {
+            ViewBag.events = EventData.GetAll();
+
             return View();
         }
 
         [HttpPost]
-        [Route("/Events/Add")]
-        public IActionResult NewEvent(string name, string description)
+        public IActionResult Delete(int[] eventIds)
         {
-            Events.Add(name, description);
+            foreach (int eventId in eventIds)
+            {
+                EventData.Remove(eventId);
+            }
 
             return Redirect("/Events");
         }

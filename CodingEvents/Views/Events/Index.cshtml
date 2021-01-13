@@ -1,34 +1,46 @@
-﻿<h1>Coding Events</h1>
+﻿@*you can write @using CodingEvents.Models & @model List<Event> or all in one line like below*@
+
+@model List<CodingEvents.Models.Event>
+<h1>Coding Events</h1>
 
 <p>
     <a asp-controller="Events" asp-action="Add">Add Event</a>
 </p>
 
-@if (ViewBag.events.Count == 0)
+<p>
+    <a asp-controller="Events" asp-action="Delete">Delete Event</a>
+</p>
+
+@if (Model.Count == 0)
 {
     <p>No events yet!</p>
 }
-
-<table class="table table-dark">
-    <thead>
+else
+{
+    <table class="table table-dark">
         <tr>
-            <th scope="col">Event</th>
-            <th scope="col">Description</th>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Contact Email
+            </th>
         </tr>
-    </thead>
-    <tbody>
-        <tr>
-            @foreach (string name in ViewBag.events.Keys)
+            @foreach (var evt in Model)
             {
-                <td>@name</td>
+                <tr>
+                    <td>@evt.Id</td>
+                    <td>@evt.Name</td>
+                    <td>@evt.Description</td>
+                    <td>@evt.ContactEmail</td>
+                </tr>
             }
-            @foreach (string description in ViewBag.events.Values)
-            {
-                <td>@description</td>
-            }
-
-        </tr>
-    </tbody>
-        
     </table>
+}
 
